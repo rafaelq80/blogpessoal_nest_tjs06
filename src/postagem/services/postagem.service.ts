@@ -15,11 +15,13 @@ export class PostagemService{
     ){}
 
     async findAll(): Promise<Postagem[]>{
+
+         // SELECT * FROM tb_postagens;
         return this.postagemRepository.find({
             relations:{
                 tema: true
             }
-        }); // SELECT * FROM tb_postagens;
+        });
     }
 
     async findById(id: number): Promise<Postagem> {
@@ -40,7 +42,7 @@ export class PostagemService{
         return postagem;
     }
 
-    async findByTitulo(titulo: string): Promise<Postagem[]>{
+    async findAllByTitulo(titulo: string): Promise<Postagem[]>{
         return this.postagemRepository.find({
             where:{
                 titulo: ILike(`%${titulo}%`)
@@ -75,7 +77,7 @@ export class PostagemService{
         
         await this.findById(id)
 
-        // DELETE tb_postagens WHERE id = ?;
+        // DELETE tb_postagens WHERE id = id_procurado;
         return await this.postagemRepository.delete(id)
     }
     

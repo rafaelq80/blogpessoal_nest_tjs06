@@ -35,7 +35,7 @@ export class TemaService{
         return tema;
     }
 
-    async findByDescricao(descricao: string): Promise<Tema[]>{
+    async findAllByDescricao(descricao: string): Promise<Tema[]>{
         return this.temaRepository.find({
             where:{
                 descricao: ILike(`%${descricao}%`)
